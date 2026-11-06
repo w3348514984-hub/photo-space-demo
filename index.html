@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="沉浸式本地3D照片空间，照片云、年轮、弧形、书页与网格布局。">
+  <title>Photo Space · 相册宇宙</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="返回相册宇宙">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span class="brand-text">PHOTO<span>SPACE</span><small>照片宇宙 · 交互式影像档案</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="private-indicator"><span class="private-dot"></span>本地处理 · 不上传</span>
+        <label class="button button-dark" for="photo-input">＋ 导入我的照片</label>
+        <input id="photo-input" type="file" accept="image/*" multiple hidden>
+      </div>
+    </header>
+    <main class="main">
+      <aside class="sidebar">
+        <p class="eyebrow">EXPLORE YOUR MOMENTS</p>
+        <h1>让回忆<br><em>漂浮</em>起来。</h1>
+        <p class="description">像探索星空一样探索照片。拖动、缩放，让画面从云海汇聚成不同的形状。</p>
+        <div class="divider"></div>
+        <p class="side-label">空间布局 <span>01 — 05</span></p>
+        <nav class="modes" aria-label="切换照片布局">
+          <button class="mode active" data-mode="cloud" aria-pressed="true"><span class="mode-index">01</span><span>照片云<small>Cloud</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode" data-mode="orbit" aria-pressed="false"><span class="mode-index">02</span><span>环形年轮<small>Orbit</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode" data-mode="arc" aria-pressed="false"><span class="mode-index">03</span><span>弧形长廊<small>Arc</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode" data-mode="stack" aria-pressed="false"><span class="mode-index">04</span><span>记忆长卷<small>Stack</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode" data-mode="wall" aria-pressed="false"><span class="mode-index">05</span><span>回忆墙<small>Wall</small></span><span class="mode-arrow">↗</span></button>
+        </nav>
+        <div class="side-bottom">
+          <div class="micro-dot"></div><p>每张照片都有自己的坐标。<br>这一次，换个角度重新看见。</p>
+        </div>
+      </aside>
+      <section class="scene-section" aria-label="交互式3D照片空间">
+        <div class="scene-hint" id="scene-hint">拖动旋转 · 滚轮缩放 · 点击照片查看</div>
+        <div class="scene" id="scene" tabindex="0" aria-label="3D 照片展示区域">
+          <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+          <div class="world" id="world"></div>
+          <div class="scene-loading" id="scene-loading">正在铺开回忆…</div>
+        </div>
+        <div class="scene-footer">
+          <div class="scene-meta"><span class="meta-number" id="photo-count">180</span><span>个瞬间</span><span class="meta-sep">/</span><span id="mode-name">照片云 Cloud</span></div>
+          <div class="scene-controls">
+            <button type="button" class="small-action" id="zoom-out" title="缩小" aria-label="缩小">−</button>
+            <button type="button" class="small-action" id="quality-toggle" title="减轻渲染压力，适合拖动时掉帧" aria-pressed="false">轻量模式</button>
+            <button type="button" class="small-action" id="reset-view" title="重置视角">重置视角</button>
+            <button type="button" class="small-action" id="zoom-in" title="放大" aria-label="放大">＋</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="bottomline">
+      <span>PHOTO SPACE <span class="muted">/ PERSONAL MEMORY ATLAS</span></span>
+      <span>示例照片是程序生成的抽象图形 · 可随时换成你自己的照片</span>
+      <span>2026 · LOCAL FIRST</span>
+    </footer>
+  </div>
+  <div class="drop-zone" id="drop-zone" hidden><span>放开鼠标，导入照片 ✦</span></div>
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="照片大图预览" hidden>
+    <button class="viewer-close" id="viewer-close" aria-label="关闭照片">×</button>
+    <button class="viewer-prev" id="viewer-prev" aria-label="上一张">‹</button>
+    <figure class="viewer-figure"><img id="viewer-photo" alt=""><figcaption id="viewer-caption"></figcaption></figure>
+    <button class="viewer-next" id="viewer-next" aria-label="下一张">›</button>
+  </div>
+  <noscript><p class="no-js">请启用 JavaScript 以体验 3D 照片布局。</p></noscript>
+</body>
+</html>
